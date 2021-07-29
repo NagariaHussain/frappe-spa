@@ -17,7 +17,10 @@ if args.add_spa:
 	# css_library = input("CSS Option (tailwind/bootstrap/vuetify): ")
 	pass
 
-root = Path(".")
+template_dir = Path('templates')
+
+if not template_dir.exists():
+	raise AssertionError("Templates directory missing")
 
 # Recursive structure
 with open("directory_schema.json", "r") as f:
@@ -27,21 +30,23 @@ with open("directory_schema.json", "r") as f:
 def generate_directory(dir: Dict, root: Path):
 	print(dir, root)
 
-	folder: Path = root / dir.get("name")
+	d_path: Path = root / dir.get("name")
 
-	if not folder.exists():
-		folder.mkdir()
+	if not d_path.exists():
+		d_path.mkdir()
 
+	# Create nested directories
 	if dir.get("dirs"):
 		for d in dir.get("dirs"):
-			generate_directory(d, folder)
+			generate_directory(d, d_path)
 
+	# Create files
 	if dir.get("files"):
 		for f in dir.get("files"):
-			f_path: Path = root / f.get("name")
+			f_path: Path = d_path / f.get("name")
 
 			if not f_path.exists():
 				f_path.touch()
 
 
-generate_directory(directory_structure, root)
+generate_directory(directory_structure, Path("."))
