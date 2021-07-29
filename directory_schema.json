@@ -1,0 +1,26 @@
+{
+    "name": "store",
+    "dirs": [
+        {
+            "name": "views",
+            "dirs": [
+                {
+                    "name": "auth"
+                }
+            ]
+        },
+        {
+            "name": "components",
+            "files": [
+                {
+                    "name": "HelloWorld.vue"
+                }
+            ]
+        }
+    ],
+    "files": [
+        {
+            "name": "package.json"
+        }
+    ]
+}
