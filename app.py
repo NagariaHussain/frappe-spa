@@ -1,5 +1,5 @@
-import json
 import argparse
+import subprocess
 
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -59,3 +59,9 @@ for root, dirs, files in os.walk("templates", topdown=True):
 			temp_file = open(temp_file_path, "r")
 			new_file.write(temp_file.read())
 			temp_file.close()
+
+print("Installing packages...")
+subprocess.Popen(["yarn", "install"], cwd=spa_name)
+
+print("Staring dev server...")
+subprocess.Popen(["yarn", "dev"], cwd=spa_name)
