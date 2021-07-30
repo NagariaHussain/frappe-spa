@@ -30,37 +30,34 @@ template_dir = Path("templates")
 if not template_dir.exists():
 	raise AssertionError("Templates directory missing")
 
-# Recursive structure
-with open("directory_schema.json", "r") as f:
-	directory_structure = json.load(f)
-
-# generate_directory(directory_structure, Path("."), spa_name)
-
 import os
 
 if not Path(spa_name).exists():
 	Path(spa_name).mkdir()
 
-for root, dirs, files in os.walk('templates', topdown=True):
-	base_path = Path(root.replace('templates', spa_name))
+for root, dirs, files in os.walk("templates", topdown=True):
+	base_path = Path(root.replace("templates", spa_name))
 
 	for d in dirs:
 		d_path = base_path / d
 		if not d_path.exists():
-			print(d_path)
 			d_path.mkdir()
-	
+
 	for f in files:
 		f_path = base_path / f
 		if not f_path.exists():
 			f_path.touch()
-		
-		with f_path.open('w') as new_file:
-			temp_file = open(Path(root) / f, 'r')
+
+		with f_path.open("w") as new_file:
+			temp_file_path = Path(root) / f
+			if f in template_files:
+				# render jinja template
+				out = jenv.get_template(str(temp_file_path)).render(
+					{"spa_name": spa_name, "app_name": app}
+				)
+				new_file.write(out)
+				continue
+
+			temp_file = open(temp_file_path, "r")
 			new_file.write(temp_file.read())
 			temp_file.close()
-			
-		
-
-
-			
