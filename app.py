@@ -2,7 +2,6 @@ import json
 import argparse
 
 from pathlib import Path
-from typing import Dict
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 jenv = Environment(loader=FileSystemLoader("."), autoescape=select_autoescape())
@@ -23,7 +22,6 @@ if args.add_spa:
 	spa_name = input("SPA name (directory and route): ")
 	# js_framework = input("JS Framwork (vuejs/react): ")
 	# css_library = input("CSS Option (tailwind/bootstrap/vuetify): ")
-	pass
 
 template_dir = Path("templates")
 
