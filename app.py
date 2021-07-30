@@ -28,8 +28,6 @@ with open("directory_schema.json", "r") as f:
 
 
 def generate_directory(dir: Dict, root: Path):
-	print(dir, root)
-
 	d_path: Path = root / dir.get("name")
 
 	if not d_path.exists():
