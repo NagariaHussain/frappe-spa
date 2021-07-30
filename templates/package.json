@@ -1,0 +1,26 @@
+{
+    "version": "0.0.0",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build --base=/assets/{{ app_name }}/{{ spa_name }}/ && yarn copy-html-entry",
+      "copy-html-entry": "cp ../{{ app_name }}/public/{{ spa_name }}/index.html ../{{ app_name }}/www/{{ spa_name }}.html",
+      "serve": "vite preview"
+    },
+    "dependencies": {
+      "@heroicons/vue": "^1.0.2",
+      "socket.io-client": "^2.4.0",
+      "vue": "^3.0.5",
+      "vue-router": "^4.0.10"
+    },
+    "devDependencies": {
+      "@tailwindcss/forms": "^0.3.3",
+      "@tailwindcss/typography": "^0.4.1",
+      "@vitejs/plugin-vue": "^1.2.5",
+      "@vue/compiler-sfc": "^3.0.5",
+      "autoprefixer": "^10.3.1",
+      "postcss": "^8.3.5",
+      "tailwindcss": "^2.2.4",
+      "vite": "^2.4.2"
+    }
+  }
+  

@@ -2,18 +2,23 @@
     "name": "store",
     "dirs": [
         {
-            "name": "views",
+            "name": "src",
             "dirs": [
                 {
-                    "name": "auth"
-                }
-            ]
-        },
-        {
-            "name": "components",
-            "files": [
+                    "name": "views",
+                    "dirs": [
+                        {
+                            "name": "auth"
+                        }
+                    ]
+                },
                 {
-                    "name": "HelloWorld.vue"
+                    "name": "components",
+                    "files": [
+                        {
+                            "name": "HelloWorld.vue"
+                        }
+                    ]
                 }
             ]
         }
