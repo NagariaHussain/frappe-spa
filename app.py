@@ -10,6 +10,7 @@ jenv = Environment(loader=FileSystemLoader("."), autoescape=select_autoescape())
 parser = argparse.ArgumentParser()
 parser.add_argument("app", help="App to which the SPA should be added")
 parser.add_argument("--add-spa", help="SPA directory/route name", action="store_true")
+parser.add_argument("--with-tailwind", help="SPA directory/route name", action="store_true")
 
 # Parse the arguments
 args = parser.parse_args()
@@ -21,7 +22,7 @@ template_files = ["package.json", "vite.config.js", "index.js"]
 if args.add_spa:
 	spa_name = input("SPA name (directory and route): ")
 	# js_framework = input("JS Framwork (vuejs/react): ")
-	# css_library = input("CSS Option (tailwind/bootstrap/vuetify): ")
+	# css_library = input("CSS Option (tailwind/bootstrap): ")
 
 template_dir = Path("templates")
 
@@ -61,7 +62,12 @@ for root, dirs, files in os.walk("templates", topdown=True):
 			temp_file.close()
 
 print("Installing packages...")
-subprocess.Popen(["yarn", "install"], cwd=spa_name)
+subprocess.run(["npm", "install"], cwd=spa_name)
+
+if args.with_tailwind:
+	# Add tailwindCSS
+	subprocess.run("npm install -D tailwindcss@latest postcss@latest autoprefixer@latest".split(" "), cwd=spa_name)
+	subprocess.run("npx tailwindcss init -p".split(" "), cwd=spa_name)
 
 print("Staring dev server...")
 subprocess.Popen(["yarn", "dev"], cwd=spa_name)
