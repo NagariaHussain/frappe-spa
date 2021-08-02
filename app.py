@@ -10,7 +10,9 @@ jenv = Environment(loader=FileSystemLoader("."), autoescape=select_autoescape())
 parser = argparse.ArgumentParser()
 parser.add_argument("app", help="App to which the SPA should be added")
 parser.add_argument("--add-spa", help="SPA directory/route name", action="store_true")
-parser.add_argument("--with-tailwind", help="SPA directory/route name", action="store_true")
+parser.add_argument(
+	"--with-tailwind", help="SPA directory/route name", action="store_true"
+)
 
 # Parse the arguments
 args = parser.parse_args()
@@ -66,8 +68,19 @@ subprocess.run(["npm", "install"], cwd=spa_name)
 
 if args.with_tailwind:
 	# Add tailwindCSS
-	subprocess.run("npm install -D tailwindcss@latest postcss@latest autoprefixer@latest".split(" "), cwd=spa_name)
+	subprocess.run(
+		"npm install -D tailwindcss@latest postcss@latest autoprefixer@latest".split(" "),
+		cwd=spa_name,
+	)
 	subprocess.run("npx tailwindcss init -p".split(" "), cwd=spa_name)
 
-print("Staring dev server...")
-subprocess.Popen(["yarn", "dev"], cwd=spa_name)
+from pprint import pprint
+
+print("Add the following mapping to your `website_route_rules` hook in `hooks.py`: ")
+print("\n\n")
+
+route_rule = {"from_route": f"/{spa_name}/<path:app_path>", "to_route": f"{spa_name}"}
+pprint(route_rule)
+
+print("\n\n")
+print("Run `yarn dev` to start the dev server")
