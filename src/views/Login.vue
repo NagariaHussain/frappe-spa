@@ -2,13 +2,18 @@
   <div class="min-h-screen bg-white flex">
     <div class="mx-auto w-full max-w-sm lg:w-96">
       <form @submit.prevent="login" class="space-y-6">
-        <label for="email"> Username </label>
+        <label for="email"> Username: </label>
         <input type="text" v-model="email" />
-
-        <label for="password"> Password </label>
+        <br />
+        <label for="password"> Password: </label>
         <input type="password" v-model="password" />
 
-        <button type="submit">Sign in</button>
+        <button
+          class="bg-blue-500 block text-white p-2 hover:bg-blue-700"
+          type="submit"
+        >
+          Sign in
+        </button>
       </form>
     </div>
   </div>
