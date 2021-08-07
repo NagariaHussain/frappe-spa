@@ -34,7 +34,7 @@ export default {
 	resources: {
 		ping() {
 			return {
-				method: 'doppio.api.main.ping',
+				method: 'frappe.ping',
 			};
 		},
 	},
