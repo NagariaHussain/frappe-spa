@@ -17,8 +17,5 @@
 <script>
 export default {
   inject: ["$auth"],
-  components: {
-    Navbar,
-  },
 };
 </script>
