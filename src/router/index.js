@@ -12,7 +12,7 @@ const routes = [
 ];
 
 const router = createRouter({
-	base: '/{{ spa_name }}/',
+	base: '/dashboard/',
 	history: createWebHistory(),
 	routes,
 });

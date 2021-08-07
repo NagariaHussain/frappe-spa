@@ -1,11 +1,11 @@
 export default [
     {
-		path: '/login',
+		path: '/login/:forgot?',
 		name: 'Login',
 		component: () =>
 			import(/* webpackChunkName: "login" */ '../views/Login.vue'),
 		meta: {
-			isPublic: true
+			isLoginPage: true
 		},
 		props: true
 	}

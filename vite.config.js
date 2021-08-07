@@ -7,7 +7,7 @@ import proxyOptions from './proxyOptions';
 export default defineConfig({
 	plugins: [vue()],
 	server: {
-		port: 8000,
+		port: 3000,
 		proxy: proxyOptions
 	},
 	resolve: {
@@ -16,7 +16,7 @@ export default defineConfig({
 		}
 	},
 	build: {
-		outDir: '../{{ app_name }}/public/{{ spa_name }}',
+		outDir: '../<app-name>/public/dashboard',
 		emptyOutDir: true,
 		target: 'es2015',
 	},
